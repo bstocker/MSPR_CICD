@@ -7,8 +7,8 @@ jobs:
     steps:
     - uses: actions/checkout@master
     - run: |
-          jar cvf Grosheny.war * && ls
-   name: copy file via ssh password
+          jar cvf Grosheny.war *
+    - name: copy file via ssh password
       uses: appleboy/scp-action@master
       with:
         host: ${{ secrets.HOST_DNS }}
