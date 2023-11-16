@@ -4,14 +4,15 @@
   <title>Sample Application JSP Page</title>
 </head>
 <body bgcolor="white">
+
   <table border="1">
     <caption>Sample Table Description: A table illustrating the structure of a JSP page</caption>
     <tr>
-      <th colspan="2" bgcolor="#dddddd" id="header1">Header 1</th>
+      <th colspan="2" bgcolor="#dddddd">Header 1</th>
     </tr>
     <tr>
-      <th id="imageHeader">Image</th>
-      <th id="descriptionHeader">Description</th>
+      <th>Image</th>
+      <th>Description</th>
     </tr>
     <tr>
       <td align="center">
@@ -23,9 +24,11 @@
       </td>
     </tr>
     <tr>
-      <th colspan="2" bgcolor="#dddddd" id="header2">Header 2</th>
+      <th colspan="2" bgcolor="#dddddd">Header 2</th>
     </tr>
   </table>
+
   <%= new String("Hello!") %>
+
 </body>
 </html>
