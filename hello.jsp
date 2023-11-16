@@ -6,9 +6,13 @@
 <body bgcolor="white">
 
   <table border="1">
-    <caption>Sample Table Description</caption>
+    <caption>Sample Table Description: A table illustrating the structure of a JSP page</caption>
     <tr>
       <th colspan="2" bgcolor="#dddddd">Header 1</th>
+    </tr>
+    <tr>
+      <th>Image</th>
+      <th>Description</th>
     </tr>
     <tr>
       <td align="center">
