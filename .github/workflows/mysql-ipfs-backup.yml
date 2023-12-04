@@ -1,0 +1,54 @@
+name: Sauvegarde MySQL sur IPFS
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  backup_mysql:
+    name: Sauvegarde MySQL
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Install MySQL Client
+        run: apk add mysql mysql-client
+
+      - name: Setup SSH Tunnel
+        run: |
+          echo "$EC2_SSH_KEY" > deploy_key.pem
+          chmod 600 deploy_key.pem
+          ssh -i deploy_key.pem $USERNAME@$HOST_DNS -fN -L 0.0.0.0:3307:127.0.0.1:3306
+
+      - name: Backup MySQL Database
+        run: |
+          mysqldump -u cnam -P3307 -p"$MYSQLDUMP_PASSWORD" films > sauvegarde_films.sql
+
+  save_to_ipfs:
+    name: Sauvegarde sur IPFS
+    runs-on: ubuntu-latest
+    needs: backup_mysql
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Setup Alpine
+        uses: jirutka/setup-alpine@v1
+        with:
+          branch: v3.15
+
+      - name: Install go-ipfs
+        run: |
+          apk add go-ipfs
+          ipfs init
+          ipfs daemon &
+        shell: alpine.sh --root {0}
+
+      - name: Save MySQL Dump to IPFS
+        run: |
+          ls -la
+          ipfs swarm peers
+          ipfs add sauvegarde_films.sql
+        shell: alpine.sh --root {0}
