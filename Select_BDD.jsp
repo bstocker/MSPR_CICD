@@ -32,25 +32,20 @@
 
                 // Établir la connexion
                 try (Connection conn = DriverManager.getConnection(url, user, password)) {
-                    // Requête SQL pour récupérer le film de l'année saisie
+                    // Requête SQL pour récupérer tous les films de l'année saisie
                     String sql = "SELECT idFilm, titre, année FROM Film WHERE année = ?";
                     try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
                         pstmt.setInt(1, anneeRecherchee); // Utilisation de l'année saisie
                         try (ResultSet rs = pstmt.executeQuery()) {
 
-                            // Affichage du résultat s'il existe
-                            if (rs.next()) {
+                            // Affichage de tous les films de l'année saisie
+                            while (rs.next()) {
                                 String colonne1 = rs.getString("idFilm");
                                 String colonne2 = rs.getString("titre");
                                 String colonne3 = rs.getString("année");
                 %>
-                                <!-- Affichage du film de l'année saisie -->
+                                <!-- Affichage de chaque film correspondant à l'année saisie -->
                                 <p>Colonne 1 : <%= colonne1 %>, Colonne 2 : <%= colonne2 %>, Colonne 3 : <%= colonne3 %></p>
-                <%
-                            } else {
-                %>
-                                <!-- Aucun film trouvé pour l'année saisie -->
-                                <p>Aucun film trouvé pour l'année <%= anneeRecherchee %>.</p>
                 <%
                             }
                         }
