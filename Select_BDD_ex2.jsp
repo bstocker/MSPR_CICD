@@ -43,6 +43,6 @@
         conn.close();
     
     %>
-    <button type="button" onclick="href=index.html">Home Page !</button>
+    <button type="button" onclick="href='index.html'">Home Page !</button>
 </body>
 </html>
