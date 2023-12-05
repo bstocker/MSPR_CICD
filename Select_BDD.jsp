@@ -29,7 +29,7 @@
 
         // Établir la connexion
         Connection conn = DriverManager.getConnection(url, user, password);
-        int year = (int)request.getParameter("annee");
+        String year = request.getParameter("annee");
         String sql = "SELECT idFilm, titre, année FROM Film WHERE année = '" + year + "'";
         PreparedStatement pstmt = conn.prepareStatement(sql);
         ResultSet rs = pstmt.executeQuery();
