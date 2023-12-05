@@ -33,7 +33,7 @@
             String colonne2 = rs.getString("titre");
             // Faites ce que vous voulez avec les données...
             //Exemple d'affichage de 2 colonnes
-            out.println("Colonne 1 : " + colonne1 + ", Colonne 2 : " + colonne2 + "</br>");
+            out.println("IdFilm: " + colonne1 + ", Titre : " + colonne2 + ", Année de sortie : " + colonne3 + "</br>");
         }
 
         // Fermer les ressources 
