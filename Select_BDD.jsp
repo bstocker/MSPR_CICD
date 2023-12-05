@@ -29,18 +29,16 @@
 
         // Établir la connexion
         Connection conn = DriverManager.getConnection(url, user, password);
-
-
-        if(isset($_GET['annee'])){
-            $sql = "SELECT idFilm, titre, année FROM Film where année = '".$_GET['annee']."'";
-            $result = mysql_query($sql);
-            }
+        int year = request.getParameter("annee");
+        String sql = "SELECT idFilm, titre, année FROM Film WHERE année = '" + year + "'";
+        PreparedStatement pstmt = conn.prepareStatement(sql);
+        ResultSet rs = pstmt.executeQuery();
 
         // Afficher les résultats (à adapter selon vos besoins)
-        while (result.next()) {
-            String colonne1 = result.getString("idFilm");
-            String colonne2 = result.getString("titre");
-            String colonne3 = result.getString("année");
+        while (rs.next()) {
+            String colonne1 = rs.getString("idFilm");
+            String colonne2 = rs.getString("titre");
+            String colonne3 = rs.getString("année");
             // Faites ce que vous voulez avec les données...
             //Exemple d'affichage de 2 colonnes
             out.println("Colonne 1 : " + colonne1 + ", Colonne 2 : " + colonne2 + ",  Colonne 3 : " + colonne3 +" </br>");
