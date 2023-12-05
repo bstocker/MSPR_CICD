@@ -14,6 +14,7 @@
 
 <button>Validé</button>
 
+
     <% 
     String url = "jdbc:mariadb://localhost:3306/films";
     String user = "mysql";
