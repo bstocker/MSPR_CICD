@@ -23,34 +23,36 @@
             String user = "root";
             String password = "root";
 
-            // Initialisation de l'année par défaut
-            int anneeRecherchee = 1900; // Année par défaut
-
-            // Vérifier si une année a été saisie dans le formulaire
+            // Vérification de la présence de l'année dans la requête
             if (request.getParameter("annee") != null) {
-                anneeRecherchee = Integer.parseInt(request.getParameter("annee"));
-            }
+                int anneeRecherchee = Integer.parseInt(request.getParameter("annee"));
 
-            // Charger le pilote JDBC
-            Class.forName("com.mysql.jdbc.Driver");
+                // Charger le pilote JDBC
+                Class.forName("com.mysql.jdbc.Driver");
 
-            // Établir la connexion
-            try (Connection conn = DriverManager.getConnection(url, user, password)) {
-                // Exemple de requête SQL avec l'année saisie
-                String sql = "SELECT idFilm, titre, année FROM Film WHERE année >= ?";
-                try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
-                    pstmt.setInt(1, anneeRecherchee); // Utilisation de l'année saisie
-                    try (ResultSet rs = pstmt.executeQuery()) {
+                // Établir la connexion
+                try (Connection conn = DriverManager.getConnection(url, user, password)) {
+                    // Requête SQL pour récupérer le film de l'année saisie
+                    String sql = "SELECT idFilm, titre, année FROM Film WHERE année = ?";
+                    try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+                        pstmt.setInt(1, anneeRecherchee); // Utilisation de l'année saisie
+                        try (ResultSet rs = pstmt.executeQuery()) {
 
-                        // Afficher les résultats (à adapter selon vos besoins)
-                        while (rs.next()) {
-                            String colonne1 = rs.getString("idFilm");
-                            String colonne2 = rs.getString("titre");
-                            String colonne3 = rs.getString("année");
-            %>
-                            <!-- Exemple d'affichage de 3 colonnes -->
-                            <p>Colonne 1 : <%= colonne1 %>, Colonne 2 : <%= colonne2 %>, Colonne 3 : <%= colonne3 %></p>
-            <%
+                            // Affichage du résultat s'il existe
+                            if (rs.next()) {
+                                String colonne1 = rs.getString("idFilm");
+                                String colonne2 = rs.getString("titre");
+                                String colonne3 = rs.getString("année");
+                %>
+                                <!-- Affichage du film de l'année saisie -->
+                                <p>Colonne 1 : <%= colonne1 %>, Colonne 2 : <%= colonne2 %>, Colonne 3 : <%= colonne3 %></p>
+                <%
+                            } else {
+                %>
+                                <!-- Aucun film trouvé pour l'année saisie -->
+                                <p>Aucun film trouvé pour l'année <%= anneeRecherchee %>.</p>
+                <%
+                            }
                         }
                     }
                 }
