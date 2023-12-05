@@ -4,13 +4,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-16">
     <title>Connexion à MySQL via JSP</title>
 </head>
 <body>
     <h1>Exemple de connexion à MySQL via JSP</h1>
-    <label for="site-search">Entrée une année:</label>
-<input type="choix" id="annee-choix" name="choix" />
+    <form method="get" action="simpleform.asp">
+    Année: <input type="text" name="year"><br>
+    <input type="submit" value="Submit">
 
 <button>Validé</button>
 
