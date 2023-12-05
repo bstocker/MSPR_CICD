@@ -8,8 +8,8 @@
 
 include "connection.php";
 
-if(isset($_GET['id'])){
-$sql = "SELECT idFilm, titre, année FROM Film where année = '".$_GET['id']."'";
+if(isset($_GET['annee'])){
+$sql = "SELECT idFilm, titre, année FROM Film where année = '".$_GET['annee']."'";
 $result = mysql_query($sql);
 }
 
