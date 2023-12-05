@@ -4,7 +4,10 @@
     padding: 0;
     box-sizing: border-box;
   }
-  
+  img {
+    max-width : 20%;
+    height : auto;
+    }
   /* Style de base pour le corps de la page */
   body {
     font-family: 'Arial', sans-serif;
