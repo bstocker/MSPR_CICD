@@ -8,4 +8,4 @@ jobs:
     
 uses: actions/checkout@master
 run: |
-      jar cvf GroshenyThibaut.war * && ls
+      jar cvf Grosheny.war * && ls
