@@ -18,16 +18,18 @@
         Class.forName("org.mariadb.jdbc.Driver");
 
         // Vérifier si des données ont été envoyées pour l'ajout d'un nouveau film
-        if (request.getParameter("titre") != null && request.getParameter("annee") != null) {
+        if (request.getParameter("titre") != null && request.getParameter("annee") != null && request.getParameter("genre") != null) {
             String nouveauTitre = request.getParameter("titre");
             int nouvelleAnnee = Integer.parseInt(request.getParameter("annee"));
+            String nouveauGenre = request.getParameter("genre");
 
             try (Connection conn = DriverManager.getConnection(url, user, password)) {
                 // Requête SQL pour ajouter un nouveau film dans la base de données
-                String insertQuery = "INSERT INTO Film (idFilm, titre, année) VALUES (DEFAULT, ?, ?)";
+                String insertQuery = "INSERT INTO Film (idFilm, titre, année, genre) VALUES (DEFAULT, ?, ?, ?)";
                 try (PreparedStatement insertStmt = conn.prepareStatement(insertQuery, Statement.RETURN_GENERATED_KEYS)) {
                     insertStmt.setString(1, nouveauTitre);
                     insertStmt.setInt(2, nouvelleAnnee);
+                    insertStmt.setString(3, nouveauGenre);
 
                     int rowsAffected = insertStmt.executeUpdate();
 
@@ -38,13 +40,13 @@
                             int nouveauIdFilm = generatedKeys.getInt(1);
     %>
                             <!-- Afficher un message si l'ajout du film a été effectué -->
-                            <p>Le film "<%= nouveauTitre %>" de l'année <%= nouvelleAnnee %> a été ajouté avec succès (ID : <%= nouveauIdFilm %>) !</p>
+                            <p>Le film "<%= nouveauTitre %>" de l'année <%= nouvelleAnnee %> dans le genre <%= nouveauGenre %> a été ajouté avec succès (ID : <%= nouveauIdFilm %>) !</p>
     <%
                         }
                     } else {
     %>
                         <!-- Afficher un message si l'ajout du film a échoué -->
-                        <p>L'ajout du film "<%= nouveauTitre %>" de l'année <%= nouvelleAnnee %> a échoué.</p>
+                        <p>L'ajout du film "<%= nouveauTitre %>" de l'année <%= nouvelleAnnee %> dans le genre <%= nouveauGenre %> a échoué.</p>
     <%
                     }
                 }
@@ -62,6 +64,8 @@
         <input type="text" id="titre" name="titre">
         <label for="annee">Année :</label>
         <input type="number" id="annee" name="annee" min="1900" max="2100">
+        <label for="genre">Genre :</label>
+        <input type="text" id="genre" name="genre">
         <input type="submit" value="Ajouter">
     </form>
 </body>
