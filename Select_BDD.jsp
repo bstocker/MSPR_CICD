@@ -3,11 +3,28 @@
 
 <!DOCTYPE html>
 <html>
+
+<?php
+
+include "connection.php";
+
+if(isset($_GET['id'])){
+$sql = "SELECT idFilm, titre, année FROM Film where année = '".$_GET['id']."'";
+$result = mysql_query($sql);
+}
+
+?>
+
 <head>
     <meta charset="UTF-8">
     <title>Connexion à MySQL via JSP</title>
 </head>
 <body>
+    <form action="Select_BDD.jsp" method="GET">
+        <div>
+          <label for="annee">Choisir année de film</label>
+          <input type="number" name="number" id="annee"/>
+        </div>
     <h1>Exemple de connexion à MySQL via JSP</h1>
     <% 
     String url = "jdbc:mysql://localhost:3306/films";
