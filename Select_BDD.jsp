@@ -41,5 +41,8 @@
         conn.close();
     
     %>
+    <a href="index.html">
+    <button type="button">Home Page !</button>
+    </a>
 </body>
 </html>
