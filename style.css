@@ -4,9 +4,9 @@
     padding: 0;
     box-sizing: border-box;
   }
-  img {
-    max-width : 20%;
-    height : auto;
+  img { 
+    width : auto;
+    height : 150px;
     }
   /* Style de base pour le corps de la page */
   body {
