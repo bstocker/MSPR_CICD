@@ -8,7 +8,7 @@
 </head>
 <body>
     <h1>Exemple de connexion à MySQL via JSP</h1>
-    <% 
+    <%@
     String url = "jdbc:mariadb://localhost:3306/films";
     String user = "mysql";
     String password = "mysql";
