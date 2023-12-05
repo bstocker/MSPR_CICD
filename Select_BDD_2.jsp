@@ -15,12 +15,12 @@
 <button>Validé</button>
 
     <% 
-    String url = "jdbc:mysql://localhost:3306/films";
+    String url = "jdbc:mariadb://localhost:3306/films";
     String user = "root";
     String password = "root";
 
         // Charger le pilote JDBC
-        Class.forName("com.mysql.jdbc.Driver");
+        Class.forName("com.mariadb.jdbc.Driver");
 
         // Établir la connexion
         Connection conn = DriverManager.getConnection(url, user, password);

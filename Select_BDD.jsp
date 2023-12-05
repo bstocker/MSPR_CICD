@@ -10,17 +10,17 @@
 <body>
     <h1>Exemple de connexion à MySQL via JSP</h1>
     <% 
-    String url = "jdbc:mysql://localhost:3306/films";
+    String url = "jdbc:mariadb://localhost:3306/films";
     String user = "root";
     String password = "root";
 
         // Charger le pilote JDBC
-        Class.forName("com.mysql.jdbc.Driver");
+        Class.forName("com.mariadb.jdbc.Driver");
 
         // Établir la connexion
         Connection conn = DriverManager.getConnection(url, user, password);
 
-        
+
         // Exemple de requête SQL
         String sql = "SELECT idFilm, titre FROM Film Where année > 2000";
         PreparedStatement pstmt = conn.prepareStatement(sql);
