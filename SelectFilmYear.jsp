@@ -8,7 +8,7 @@
     <title>Connexion à MySQL via JSP</title>
 </head>
 <body>
-    <form action = "Select_BDD.jsp" method = "GET">
+    <form action = "Select_BDD_copy.jsp" method = "GET">
     <label for="years">Année :</label>
     <input type="number" id="years" name="years" min="1900" max="2100" />
     <input type = "submit" value = "Submit" />
