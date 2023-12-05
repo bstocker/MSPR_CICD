@@ -9,8 +9,7 @@
 </head>
 <body>
     <h1>Exemple de connexion à MySQL via JSP</h1>
-    <%@
-    
+    <% 
     String url = "jdbc:mariadb://localhost:3306/films";
     String user = "mysql";
     String password = "mysql";
@@ -23,7 +22,7 @@
 
 
         // Exemple de requête SQL
-        String sql = "SELECT idFilm, titre FROM Film Where année = 2000";
+        String sql = "SELECT idFilm, titre FROM Film Where année > 2000";
         PreparedStatement pstmt = conn.prepareStatement(sql);
         ResultSet rs = pstmt.executeQuery();
 
