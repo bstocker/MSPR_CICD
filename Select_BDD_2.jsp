@@ -16,8 +16,8 @@
 
     <% 
     String url = "jdbc:mariadb://localhost:3306/films";
-    String user = "root";
-    String password = "root";
+    String user = "mysql";
+    String password = "mysql";
 
         // Charger le pilote JDBC
         Class.forName("com.mariadb.jdbc.Driver");
