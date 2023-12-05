@@ -21,11 +21,11 @@
         <input type="submit" value="Modifier Titre">
     </form>
 
+     <h1>Exemple de connexion à MySQL via JSP</h1>
     <% 
-        try {
-            String url = "jdbc:mysql://localhost:3306/films";
-            String user = "root";
-            String password = "root";
+    String url = "jdbc:mariadb://localhost:3306/films";
+    String user = "mysql";
+    String password = "mysql";
 
             // Vérification de la présence des paramètres dans la requête POST
             if (request.getMethod().equals("POST")) {
