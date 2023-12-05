@@ -18,10 +18,7 @@
     </form>
 
     <% 
-        try {
-            String url = "jdbc:mysql://localhost:3306/films";
-            String user = "root";
-            String password = "root";
+        
 
             // Vérification de la présence de l'année dans la requête
             if (request.getParameter("annee") != null) {
