@@ -28,7 +28,7 @@
 
         
         // Exemple de requête SQL
-        String sql = "SELECT idFilm, titre FROM Film Where année > 'choix'";
+        String sql = "SELECT idFilm, titre FROM Film Where année > choix";
         PreparedStatement pstmt = conn.prepareStatement(sql);
         ResultSet rs = pstmt.executeQuery();
 
