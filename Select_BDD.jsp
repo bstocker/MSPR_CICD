@@ -21,7 +21,7 @@
         Connection conn = DriverManager.getConnection(url, user, password);
 
         // Exemple de requête SQL
-        String sql = "SELECT idFilm, titre, année FROM Film";
+        String sql = "SELECT idFilm, titre, année FROM Film where année > 2000 ";
         PreparedStatement pstmt = conn.prepareStatement(sql);
         ResultSet rs = pstmt.executeQuery();
 
@@ -29,6 +29,7 @@
         while (rs.next()) {
             String colonne1 = rs.getString("idFilm");
             String colonne2 = rs.getString("titre");
+String colonne3 = rs.getString("année);
             // Faites ce que vous voulez avec les données...
             //Exemple d'affichage de 2 colonnes
             out.println("Colonne 1 : " + colonne1 + ", Colonne 2 : " + colonne2 + "</br>");
