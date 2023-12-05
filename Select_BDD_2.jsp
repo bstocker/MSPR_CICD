@@ -13,7 +13,6 @@
     Année: <input type="text" name="year"><br>
     <input type="submit" value="Submit">
 
-<button>Validé</button>
 
 
     <% 
