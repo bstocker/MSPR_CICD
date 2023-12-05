@@ -39,9 +39,9 @@ $result = mysql_query($sql);
 
         // Afficher les résultats (à adapter selon vos besoins)
         while (result.next()) {
-            String colonne1 = rs.getString("idFilm");
-            String colonne2 = rs.getString("titre");
-            String colonne3 = rs.getString("année");
+            String colonne1 = result.getString("idFilm");
+            String colonne2 = result.getString("titre");
+            String colonne3 = result.getString("année");
             // Faites ce que vous voulez avec les données...
             //Exemple d'affichage de 2 colonnes
             out.println("Colonne 1 : " + colonne1 + ", Colonne 2 : " + colonne2 + ",  Colonne 3 : " + colonne3 +" </br>");
