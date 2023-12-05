@@ -32,7 +32,7 @@
             String colonne3 = rs.getString("année");
             // Faites ce que vous voulez avec les données...
             //Exemple d'affichage de 2 colonnes
-            out.println("Colonne 1 : " + colonne1 + ", Colonne 2 : " + colonne2 + "Colonne 3: " + colonne3 </br>");
+            out.println("Colonne 1 : " + colonne1 + ", Colonne 2 : " + colonne2 +",  Colonne 3: " + colonne3" </br>");
         }
 
         // Fermer les ressources 
