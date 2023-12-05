@@ -32,7 +32,7 @@
 
                 // Établir la connexion
                 try (Connection conn = DriverManager.getConnection(url, user, password)) {
-                    // Requête SQL pour récupérer tous les films de l'année saisie
+                    // Requête SQL pour récupérer les films de l'année saisie
                     String sql = "SELECT idFilm, titre, année FROM Film WHERE année = ?";
                     try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
                         pstmt.setInt(1, anneeRecherchee); // Utilisation de l'année saisie
@@ -48,6 +48,26 @@
                                 <p>Colonne 1 : <%= colonne1 %>, Colonne 2 : <%= colonne2 %>, Colonne 3 : <%= colonne3 %></p>
                 <%
                             }
+                        }
+                    }
+                }
+            } else {
+                // Si aucune année n'est spécifiée, afficher tous les films
+                try (Connection conn = DriverManager.getConnection(url, user, password)) {
+                    // Requête SQL pour récupérer tous les films
+                    String sql = "SELECT idFilm, titre, année FROM Film";
+                    try (PreparedStatement pstmt = conn.prepareStatement(sql);
+                         ResultSet rs = pstmt.executeQuery()) {
+
+                        // Affichage de tous les films
+                        while (rs.next()) {
+                            String colonne1 = rs.getString("idFilm");
+                            String colonne2 = rs.getString("titre");
+                            String colonne3 = rs.getString("année");
+                %>
+                            <!-- Affichage de chaque film -->
+                            <p>Colonne 1 : <%= colonne1 %>, Colonne 2 : <%= colonne2 %>, Colonne 3 : <%= colonne3 %></p>
+                <%
                         }
                     }
                 }
