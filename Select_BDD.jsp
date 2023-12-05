@@ -1,4 +1,4 @@
- <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.sql.*" %>
 
 <!DOCTYPE html>
@@ -18,11 +18,17 @@
     </form>
 
     <% 
-        
+        try {
+            String url = "jdbc:mysql://localhost:3306/films";
+            String user = "root";
+            String password = "root";
 
             // Vérification de la présence de l'année dans la requête
             if (request.getParameter("annee") != null) {
                 int anneeRecherchee = Integer.parseInt(request.getParameter("annee"));
+
+                // Charger le pilote JDBC
+                Class.forName("com.mysql.jdbc.Driver");
 
                 // Établir la connexion
                 try (Connection conn = DriverManager.getConnection(url, user, password)) {
