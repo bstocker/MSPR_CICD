@@ -19,6 +19,7 @@
           <input type="number" name="number" id="annee"/>
         </div>
     <h1>Exemple de connexion à MySQL via JSP</h1>
+    </form>
     <% 
     String url = "jdbc:mariadb://localhost:3306/films";
     String user = "mysql";
