@@ -37,7 +37,7 @@
     <%
                     } else {
                         // Requête SQL pour ajouter un nouveau film dans la base de données
-                        String insertQuery = "INSERT INTO Film (idFilm, titre, année, genre) VALUES (?, ?, ?, NULL)";
+                        String insertQuery = "INSERT INTO Film (idFilm, titre, année, genre) VALUES (?, ?, ?, 'Non spécifié')";
                         try (PreparedStatement insertStmt = conn.prepareStatement(insertQuery)) {
                             insertStmt.setInt(1, idFilm);
                             insertStmt.setString(2, nouveauTitre);
