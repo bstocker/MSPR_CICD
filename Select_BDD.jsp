@@ -4,16 +4,9 @@
 <!DOCTYPE html>
 <html>
 
-<?php
 
-include "connection.php";
 
-if(isset($_GET['annee'])){
-$sql = "SELECT idFilm, titre, année FROM Film where année = '".$_GET['annee']."'";
-$result = mysql_query($sql);
-}
 
-?>
 
 <head>
     <meta charset="UTF-8">
@@ -28,14 +21,20 @@ $result = mysql_query($sql);
     <h1>Exemple de connexion à MySQL via JSP</h1>
     <% 
     String url = "jdbc:mariadb://localhost:3306/films";
-    String user = "root";
-    String password = "root";
+    String user = "mysql";
+    String password = "mysql";
 
         // Charger le pilote JDBC
         Class.forName("org.mariadb.jdbc.Driver");
 
         // Établir la connexion
         Connection conn = DriverManager.getConnection(url, user, password);
+
+
+        if(isset($_GET['annee'])){
+            $sql = "SELECT idFilm, titre, année FROM Film where année = '".$_GET['annee']."'";
+            $result = mysql_query($sql);
+            }
 
         // Afficher les résultats (à adapter selon vos besoins)
         while (result.next()) {
@@ -48,6 +47,8 @@ $result = mysql_query($sql);
         }
 
         // Fermer les ressources 
+        rs.close();
+        pstmt.close();
         conn.close();
     
     %>
