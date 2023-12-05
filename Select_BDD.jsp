@@ -21,8 +21,7 @@
         Connection conn = DriverManager.getConnection(url, user, password);
 
         // Exemple de requête SQL
-        String sql = "SELECT idFilm, titre FROM Film 
-        Where année < 2000";
+        String sql = "SELECT idFilm, titre FROM Film Where année < 2000";
         PreparedStatement pstmt = conn.prepareStatement(sql);
         ResultSet rs = pstmt.executeQuery();
 
