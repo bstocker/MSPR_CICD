@@ -38,7 +38,7 @@ $result = mysql_query($sql);
         Connection conn = DriverManager.getConnection(url, user, password);
 
         // Afficher les résultats (à adapter selon vos besoins)
-        while (rs.next()) {
+        while (result.next()) {
             String colonne1 = rs.getString("idFilm");
             String colonne2 = rs.getString("titre");
             String colonne3 = rs.getString("année");
@@ -48,8 +48,6 @@ $result = mysql_query($sql);
         }
 
         // Fermer les ressources 
-        rs.close();
-        pstmt.close();
         conn.close();
     
     %>
