@@ -37,11 +37,6 @@ $result = mysql_query($sql);
         // Établir la connexion
         Connection conn = DriverManager.getConnection(url, user, password);
 
-        // Exemple de requête SQL
-        String sql = "SELECT idFilm, titre, année FROM Film where année > 2000 ";
-        PreparedStatement pstmt = conn.prepareStatement(sql);
-        ResultSet rs = pstmt.executeQuery();
-
         // Afficher les résultats (à adapter selon vos besoins)
         while (rs.next()) {
             String colonne1 = rs.getString("idFilm");
