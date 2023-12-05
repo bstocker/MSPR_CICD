@@ -24,18 +24,23 @@
 
             try (Connection conn = DriverManager.getConnection(url, user, password)) {
                 // Requête SQL pour ajouter un nouveau film dans la base de données
-                String insertQuery = "INSERT INTO Film (titre, année) VALUES (?, ?)";
-                try (PreparedStatement insertStmt = conn.prepareStatement(insertQuery)) {
+                String insertQuery = "INSERT INTO Film (idFilm, titre, année) VALUES (DEFAULT, ?, ?)";
+                try (PreparedStatement insertStmt = conn.prepareStatement(insertQuery, Statement.RETURN_GENERATED_KEYS)) {
                     insertStmt.setString(1, nouveauTitre);
                     insertStmt.setInt(2, nouvelleAnnee);
 
                     int rowsAffected = insertStmt.executeUpdate();
 
                     if (rowsAffected > 0) {
+                        // Récupérer l'ID généré pour le nouveau film
+                        ResultSet generatedKeys = insertStmt.getGeneratedKeys();
+                        if (generatedKeys.next()) {
+                            int nouveauIdFilm = generatedKeys.getInt(1);
     %>
-                        <!-- Afficher un message si l'ajout du film a été effectué -->
-                        <p>Le film "<%= nouveauTitre %>" de l'année <%= nouvelleAnnee %> a été ajouté avec succès !</p>
+                            <!-- Afficher un message si l'ajout du film a été effectué -->
+                            <p>Le film "<%= nouveauTitre %>" de l'année <%= nouvelleAnnee %> a été ajouté avec succès (ID : <%= nouveauIdFilm %>) !</p>
     <%
+                        }
                     } else {
     %>
                         <!-- Afficher un message si l'ajout du film a échoué -->
@@ -44,7 +49,7 @@
                     }
                 }
             } catch (Exception e) {
-                // Gérer les exceptions (journalisation, affichage d'un message d'erreur, etc.)
+                // Gérer les exceptions
                 e.printStackTrace();
                 out.println("Erreur : " + e.getMessage());
             }
