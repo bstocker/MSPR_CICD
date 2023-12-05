@@ -24,7 +24,7 @@
             String password = "root";
 
             // Initialisation de l'année par défaut
-            int anneeRecherchee = 2000; // Année par défaut
+            int anneeRecherchee = 1900; // Année par défaut
 
             // Vérifier si une année a été saisie dans le formulaire
             if (request.getParameter("annee") != null) {
