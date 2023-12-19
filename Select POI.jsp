@@ -9,7 +9,7 @@
 <body>
     <h1>Exemple de connexion à MySQL via JSP</h1>
     <% 
-    String url = "jdbc:mariadb://localhost:3306/films";
+    String url = "jdbc:mariadb://localhost:3306/equipements";
     String user = "mysql";
     String password = "mysql";
 
@@ -19,18 +19,18 @@
         // Établir la connexion
 Connection conn = DriverManager.getConnection(url, user, password);
             // Exemple de requête SQL
-        String sql = "SELECT idFilm, titre, année FROM Film WHERE année >= 2000";
+        String sql = "SELECT equi_id, equi_libelle, equi_lat, equi_long, get_distance_metres('48.858205', '2.294359', equi_lat, equi_long) AS proximite FROM equipement HAVING proximite < 1000 ORDER BY proximite ASC LIMIT 10;";
         PreparedStatement pstmt = conn.prepareStatement(sql);
         ResultSet rs = pstmt.executeQuery();
 
         // Afficher les résultats (à adapter selon vos besoins)
         while (rs.next()) {
-            String colonne1 = rs.getString("idFilm");
-            String colonne2 = rs.getString("titre");
-            String colonne3 = rs.getString("année");
+            String colonne1 = rs.getString("equi_libelle");
+            String colonne2 = rs.getString("equi_lat");
+            String colonne3 = rs.getString("equi_long");
             // Faites ce que vous voulez avec les données...
             //Exemple d'affichage de 2 colonnes
-            out.println("id : " + colonne1 + ", titre : " + colonne2 + ", année : " + colonne3 + "</br>");
+            out.println("Batiment : " + colonne1 + ", latitude : " + colonne2 + ", Longitude : " + colonne3 + "</br>");
         }
 
         // Fermer les ressources 
