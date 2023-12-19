@@ -12,6 +12,21 @@
         <title>Carte</title>
     </head>
     <body>
+    <%
+    String url = "jdbc:mariadb://localhost:3306/equipements";
+    String user = "mysql";
+    String password = "mysql";
+
+        // Charger le pilote JDBC
+        Class.forName("org.mariadb.jdbc.Driver");
+
+        // Établir la connexion
+    Connection conn = DriverManager.getConnection(url, user, password);
+
+
+    %>
+
+
         <div id="map">
 	    <!-- Ici s'affichera la carte -->
 	</div>
