@@ -9,7 +9,7 @@
         <style type="text/css">
             #map{ /* la carte DOIT avoir une hauteur sinon elle n'apparaît pas */
                 height:750px;
-                width: 750px;
+                width: auto;
             }
         </style>
         <title>Carte</title>
